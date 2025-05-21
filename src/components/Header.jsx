@@ -2,7 +2,7 @@ import TaskImg from "../assets/task.svg";
 
 export default function Header() {
   return (
-    <header>
+    <header className="p-3">
       <ul className="nav justify-content-center align-items-center">
         <li className="nav-item">
           <a className="nav-link" href="/">

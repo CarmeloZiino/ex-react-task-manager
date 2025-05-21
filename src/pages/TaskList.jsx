@@ -1,14 +1,4 @@
-/*
 
-Proprietà Oggetto=>
-   "title": 
-    "description": 
-    "status": 
-    "id": 
-    "createdAt": 
-
-    key, title, status, description, createdAt
-*/
 import useTasks from "../hooks/useTasks";
 import TaskRow from "../components/TaskRow";
 
@@ -16,7 +6,6 @@ export default function TaskList() {
   // console.log("QUESTE SONO LE TASK CHE HO RECUPERATO:" , )
 
   const dataTasks = useTasks()
-console.log(dataTasks)
   return (
     <>
       <div className="table-responsive">
@@ -35,12 +24,6 @@ console.log(dataTasks)
                     <TaskRow  key={t.id} title={t.title} status={t.status} description={t.description} createdAt={t.createdAt}/>
                 )
               })}
-            
-
-
-            <tr className="customTable">
-             
-            </tr>
           </tbody>
           <tfoot></tfoot>
         </table>
@@ -48,7 +31,3 @@ console.log(dataTasks)
     </>
   );
 }
-
-/* <TaskRow key={} title={} status={} description={} createAt={}/> */
-
-           
