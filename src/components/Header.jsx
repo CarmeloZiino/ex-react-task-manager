@@ -10,13 +10,17 @@ export default function Header() {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/">
+          <a
+            className="nav-link d-flex flex-column justify-content-center align-items-center"
+            href="/"
+          >
             <img
-            id="logo"
+              id="logo"
               src={TaskImg}
               alt="LOGO TASK MANAGER"
               style={{ width: "50px" }}
             />
+            <p id="logoTxt"> MyTask</p>
           </a>
         </li>
         <li className="nav-item">

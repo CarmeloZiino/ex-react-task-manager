@@ -3,12 +3,12 @@ import useTasks from "../hooks/useTasks";
 
 const GlobalContext = createContext();
 
-
-
 export default function GlobalProvider({ children }) {
+  const dataTasks = useTasks();
 
-    const dataTasks = useTasks()
-
-
-  return <GlobalContext.Provider value={{...dataTasks}}>{children}</GlobalContext.Provider>;
+  return (
+    <GlobalContext.Provider value={{ ...dataTasks }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 }

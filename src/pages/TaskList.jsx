@@ -9,11 +9,12 @@ export default function TaskList() {
   return (
     <>
       <div className="table-responsive">
+        <h2>Le tue Task:</h2>
         <table className="customTable">
           <thead className="">
             <tr>
               <th>Task</th>
-              <th>Descrizione</th>
+              {/* <th>Appunti</th> */}
               <th>Stato</th>
               <th>Data di Creazione</th>
             </tr>
