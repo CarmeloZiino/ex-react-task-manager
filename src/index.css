@@ -1,0 +1,106 @@
+* {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+}
+
+:root {
+  /* Backgrounds */
+  --bg-main: #ECEDE9;
+  --bg-card: #CCD6ED;
+
+  /* Primary Colors */
+  --primary: #7284C0;
+  --primary-dark: #2E3853;
+
+  /* Accent & Details */
+  --accent: #DBCAC0;
+  --muted: #ADABA2;
+
+  /* Text */
+  --text-main: #2E3853;
+  --text-muted: #ADABA2;
+
+  /* Borders */
+  --border-color: #ADABA2;
+}
+
+
+header {
+  box-shadow: 2px 2px 10px black;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-link {
+  color: #2E3853;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  font-weight: 550;
+}
+
+td {
+  text-shadow: 0.5px 1px 0.2px rgba(0, 0, 0, 0.582);
+}
+
+/* Stile generale della tabella */
+.customTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+/* Stile dell'header */
+.customTable thead tr {
+  background-color: #2e3b51;
+  color: white;
+  text-align: left;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Celle dell'header */
+.customTable th {
+  padding: 1.2rem 1rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* Celle del body */
+.customTable td {
+  padding: 1rem;
+  background-color: #ccd6ed;
+  text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Righe del body */
+.customTable tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+/* Hover sulle righe */
+.customTable tbody tr:hover td {
+  background-color: #dbe2f4;
+}
+
+/* Ultima riga senza bordo */
+.customTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Responsive su schermi piccoli */
+@media screen and (max-width: 768px) {
+  .customTable {
+    margin: 1rem 0;
+    border-radius: 6px;
+  }
+
+  .customTable th,
+  .customTable td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
