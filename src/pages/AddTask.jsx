@@ -1,8 +1,11 @@
+//Import
 import { useState, useMemo, useRef } from "react";
-
+import { useGlobalContext } from "../contexts/globalContext";
 const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
 export default function AddTask() {
+  const { addTask } = useGlobalContext();
+
   //INPUT CONTROLLATI: (Nome Task)
 
   const [taskTitle, setTaskTitle] = useState("");
@@ -22,7 +25,7 @@ export default function AddTask() {
     return caratteriValidi && taskTitle.length >= 0;
   }, [taskTitle]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -41,6 +44,23 @@ export default function AddTask() {
         Descrizione: ${taskDescription.current.value},
 `
     );
+    //Aggiunta della Task all'array Tasks
+    const newTask = {
+      title: taskTitle,
+      description: taskDescription.current.value,
+      status: taskStatus.current.value,
+    };
+
+    console.log(newTask);
+       try {
+            await addTask(newTask)
+            alert("Task creata con successo!")
+            setTitle("")
+            description.current.value = ""
+            select.current.value = ""
+        } catch (error) {
+            alert(error.message)
+        }
   };
 
   return (
