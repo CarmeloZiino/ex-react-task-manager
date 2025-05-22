@@ -44,20 +44,18 @@ export default function useTasks() {
       throw new Error(message);
       setTasks((prev) => [...prev, task.task]);
     }
-  }
+  };
 
-    const removeTask = async (idTask) => {
-      const call = await fetch(`${url}/tasks`, {
+  const removeTask = async (idTask) => {
+    try {
+      const call = await fetch(`${url}/tasks/${idTask}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(idTask),
       });
-
       const resCall = await call.json();
-
-      if (resCall === true) {
+      if (resCall.success === true) {
         setTasks((prevTask) => prevTask.filter((t) => t.id !== idTask));
       } else {
         throw new Error(
@@ -65,33 +63,37 @@ export default function useTasks() {
             "Oh, oh! L'eliminazione della Task ha causato un ERRORE!!!"
         );
       }
-    };
-
-    const updateTask = async (updateTask) => {
-      const call = await fetch(`${url}/tasks`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updateTask),
-      });
-
-      const resCall = await call.json();
-
-      if (resCall === true) {
-        setTasks((prevTask) =>
-          prevTask.map((oldTask) =>
-            oldTask.id === resCall.task.id ? resCall.task : oldTask
-          )
-        );
-      } else {
-        throw new Error(
-          resCall.message || "Oh, oh! Qualcosa ha causato un ERRORE!!!"
-        );
-      }
-    };
-
-    const dataTask = { tasks, addTask, removeTask, updateTask };
-
-    return dataTask;
+    } catch (error) {
+      console.error("Errore durante l'eliminazione:", error);
+      throw error;
+    }
   };
+
+  const updateTask = async (updateTask) => {
+    const call = await fetch(`${url}/tasks`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateTask),
+    });
+
+    const resCall = await call.json();
+
+    if (resCall === true) {
+      setTasks((prevTask) =>
+        prevTask.map((oldTask) =>
+          oldTask.id === resCall.task.id ? resCall.task : oldTask
+        )
+      );
+    } else {
+      throw new Error(
+        resCall.message || "Oh, oh! Qualcosa ha causato un ERRORE!!!"
+      );
+    }
+  };
+
+  const dataTask = { tasks, addTask, removeTask, updateTask };
+
+  return dataTask;
+}

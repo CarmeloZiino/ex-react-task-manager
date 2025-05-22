@@ -5,21 +5,33 @@ import { useParams, useNavigate } from "react-router-dom";
 export default function TaskDetail() {
   const navigate = useNavigate();
 
-  const { tasks } = useGlobalContext();
+  const { tasks, removeTask } = useGlobalContext();
   const { id } = useParams();
   const thisTask = tasks.find((t) => t.id === parseInt(id));
   if (!tasks || tasks.length === 0) {
     return <div>Caricamento...</div>;
   }
+  console.log(thisTask)
 
-  const handleRemove =  (e) => {
-    e.preventDefault()
-    return console.log("Elimino");
+  const handleRemove = async (e) => {
+    e.preventDefault();
+
+    // return console.log("Elimino");
+    try {
+      await removeTask(thisTask.id);
+      alert("Task eliminata con successo!");
+      navigate('/')
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleRemove} className="d-flex flex-column gap-3 shadow-lg rounded-4 p-4">
+      <form
+        onSubmit={handleRemove}
+        className="d-flex flex-column gap-3 shadow-lg rounded-4 p-4"
+      >
         <div className="d-flex flex-column gap-3">
           <h1 className="text-center">Task:</h1>
           <h2

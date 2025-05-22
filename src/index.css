@@ -199,13 +199,13 @@ td {
   color: var(--text-main);
 }
 
-/* .validation {
-  font-size: 0.62rem;
+ .validation {
+  font-size: 0.7em;
   color: var(--primary-dark);
   font-style: oblique;
   text-decoration: underline;
   text-align: end;
-} */
+} 
 
 .customBtn {
   width: max-content;

@@ -1,17 +1,11 @@
-
 import TaskRow from "../components/TaskRow";
 
-import { useGlobalContext } from '../contexts/globalContext'
+import { useGlobalContext } from "../contexts/globalContext";
 
 export default function TaskList() {
- 
-    const { tasks } = useGlobalContext()
-
-
+  const { tasks } = useGlobalContext();
 
   // const dataTasks = useTasks()
-
-
 
   return (
     <>
@@ -27,11 +21,18 @@ export default function TaskList() {
             </tr>
           </thead>
           <tbody className="customTable">
-              {tasks.map(t =>{
-                return(
-                    <TaskRow  id={t.id} title={t.title} status={t.status} description={t.description} createdAt={t.createdAt}/>
-                )
-              })}
+            {tasks.map((t) => {
+              return (
+                <TaskRow
+                  key={t.id}
+                  id={t.id}
+                  title={t.title}
+                  status={t.status}
+                  description={t.description}
+                  createdAt={t.createdAt}
+                />
+              );
+            })}
           </tbody>
           <tfoot></tfoot>
         </table>

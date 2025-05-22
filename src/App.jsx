@@ -8,6 +8,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import TaskList from "./pages/TaskList";
 import AddTask from "./pages/AddTask";
 import TaskDetail from "./pages/TaskDetails";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" Component={TaskList} />
               <Route path="/addTask" Component={AddTask} />
               <Route path="/task/:id" Component={TaskDetail} />
+              <Route path="*" Component={NotFound} />
             </Route>
           </Routes>
         </BrowserRouter>
