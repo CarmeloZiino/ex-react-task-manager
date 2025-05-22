@@ -12,3 +12,5 @@ export default function GlobalProvider({ children }) {
     </GlobalContext.Provider>
   );
 }
+
+export const useGlobalContext = () => useContext(GlobalContext);

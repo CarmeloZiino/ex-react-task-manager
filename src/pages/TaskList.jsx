@@ -1,11 +1,18 @@
 
-import useTasks from "../hooks/useTasks";
 import TaskRow from "../components/TaskRow";
 
-export default function TaskList() {
-  // console.log("QUESTE SONO LE TASK CHE HO RECUPERATO:" , )
+import { useGlobalContext } from '../contexts/globalContext'
 
-  const dataTasks = useTasks()
+export default function TaskList() {
+ 
+    const { tasks } = useGlobalContext()
+
+
+
+  // const dataTasks = useTasks()
+
+
+
   return (
     <>
       <div className="table-responsive">
@@ -20,7 +27,7 @@ export default function TaskList() {
             </tr>
           </thead>
           <tbody className="customTable">
-              {dataTasks.map(t =>{
+              {tasks.map(t =>{
                 return(
                     <TaskRow  key={t.id} title={t.title} status={t.status} description={t.description} createdAt={t.createdAt}/>
                 )
