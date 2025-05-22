@@ -1,9 +1,11 @@
 import { memo } from "react";
 
-function TaskRow({ title, status, description, createdAt }) {
+function TaskRow({ title, status, description, createdAt , id}) {
   return (
     <tr className="customTable">
-      <td>{title}</td>
+      <td>
+        <a href={`./task/${id}`} style={{textDecoration: "none" , color:"black"}}> {title} </a>
+      </td>
       {/* <td>{description}</td> */}
       {status === "To do" ? (
         <td style={{ backgroundColor: "var(--color-red)" }}>{status}</td>

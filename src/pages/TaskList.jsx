@@ -29,7 +29,7 @@ export default function TaskList() {
           <tbody className="customTable">
               {tasks.map(t =>{
                 return(
-                    <TaskRow  key={t.id} title={t.title} status={t.status} description={t.description} createdAt={t.createdAt}/>
+                    <TaskRow  id={t.id} title={t.title} status={t.status} description={t.description} createdAt={t.createdAt}/>
                 )
               })}
           </tbody>

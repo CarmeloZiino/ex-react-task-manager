@@ -7,6 +7,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 //PAGES
 import TaskList from "./pages/TaskList";
 import AddTask from "./pages/AddTask";
+import TaskDetail from "./pages/TaskDetails";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               {/* Pagine */}
               <Route path="/" Component={TaskList} />
               <Route path="/addTask" Component={AddTask} />
+              <Route path="/task/:id" Component={TaskDetail} />
             </Route>
           </Routes>
         </BrowserRouter>
