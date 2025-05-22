@@ -15,7 +15,7 @@ export default function TaskList() {
 
   return (
     <>
-      <div className="table-responsive">
+      <div className="table-responsive shadow-lg rounded-4 p-5">
         <h2>Le tue Task:</h2>
         <table className="customTable">
           <thead className="">

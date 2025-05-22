@@ -19,10 +19,12 @@ export default function AddTask() {
   //VALIDAZIONI (Funzione per l'OnSubmit del Form)
 
   const isTaskTitleValid = useMemo(() => {
-    const caratteriValidi = [...taskTitle].every(
-      (c) => !symbols.includes(c.toLocaleLowerCase())
-    );
-    return caratteriValidi && taskTitle.length >= 0;
+    if (!taskTitle.trim()) {
+      return "Il Nome della Task non può essere vuoto";
+    }
+    if ([...taskTitle].some((c) => symbols.includes(c.toLocaleLowerCase())))
+      return "Il Nome della Task non può contenere simboli";
+    return "";
   }, [taskTitle]);
 
   const handleSubmit = async (e) => {
@@ -32,7 +34,7 @@ export default function AddTask() {
       !taskTitle.trim() ||
       !taskDescription.current.value.trim() ||
       !taskStatus.current.value.trim() ||
-      !isTaskTitleValid
+      isTaskTitleValid
     ) {
       alert("Errore: Compilare tutti i campi");
       return;
@@ -52,22 +54,25 @@ export default function AddTask() {
     };
 
     console.log(newTask);
-       try {
-            await addTask(newTask)
-            alert("Task creata con successo!")
-            setTitle("")
-            description.current.value = ""
-            select.current.value = ""
-        } catch (error) {
-            alert(error.message)
-        }
+    try {
+      await addTask(newTask);
+      alert("Task creata con successo!");
+      setTaskTitle("");
+      taskDescription.current.value = "";
+      taskStatus.current.value = "";
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
     <>
       <h1 className="mb-5">Aggiungi una Task:</h1>
 
-      <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+      <form
+        onSubmit={handleSubmit}
+        className="d-flex flex-column gap-3 shadow-lg rounded-4  p-4"
+      >
         <div className="mb-3 sectionForm">
           <label className="formCustomLabel">Nome della Task</label>
           <input
@@ -78,9 +83,20 @@ export default function AddTask() {
             id=""
             placeholder="Tagliare l'erba in giardino"
           />
-          <p className="validation">
-            questo campo non può essere vuoto e non può contenere simboli
-          </p>
+          <div className="d-flex justify-content-between">
+            {isTaskTitleValid && (
+              <p
+                className=""
+                style={{
+                  color: "red",
+                  fontSize: "0.7rem",
+                  fontStyle: "oblique",
+                }}
+              >
+                {isTaskTitleValid}
+              </p>
+            )}
+          </div>
         </div>
         <div className="mb-3 sectionForm">
           <label className="formCustomLabel">Stato</label>

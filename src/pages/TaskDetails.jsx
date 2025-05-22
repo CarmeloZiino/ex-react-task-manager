@@ -19,9 +19,9 @@ export default function TaskDetail() {
 
   return (
     <>
-      <form onSubmit={handleRemove} className="d-flex flex-column gap-3">
+      <form onSubmit={handleRemove} className="d-flex flex-column gap-3 shadow-lg rounded-4 p-4">
         <div className="d-flex flex-column gap-3">
-          <h1>Task:</h1>
+          <h1 className="text-center">Task:</h1>
           <h2
             style={{
               textShadow: "1px 1px 1px black",
