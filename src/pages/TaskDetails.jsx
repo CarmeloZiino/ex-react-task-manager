@@ -2,25 +2,27 @@ import { useGlobalContext } from "../contexts/globalContext";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+import Modal from "../components/Modal";
+
 export default function TaskDetail() {
   const navigate = useNavigate();
-
+  //MDOALE
+  const [show, setShow] = useState(false);
+  //TASK DATA
   const { tasks, removeTask } = useGlobalContext();
   const { id } = useParams();
   const thisTask = tasks.find((t) => t.id === parseInt(id));
   if (!tasks || tasks.length === 0) {
     return <div>Caricamento...</div>;
   }
-  console.log(thisTask)
 
   const handleRemove = async (e) => {
-    e.preventDefault();
 
     // return console.log("Elimino");
     try {
       await removeTask(thisTask.id);
       alert("Task eliminata con successo!");
-      navigate('/')
+      navigate("/");
     } catch (error) {
       alert(error.message);
     }
@@ -29,7 +31,7 @@ export default function TaskDetail() {
   return (
     <>
       <form
-        onSubmit={handleRemove}
+        // onSubmit={handleRemove}
         className="d-flex flex-column gap-3 shadow-lg rounded-4 p-4"
       >
         <div className="d-flex flex-column gap-3">
@@ -44,8 +46,8 @@ export default function TaskDetail() {
           </h2>
         </div>
 
-        <p style={{ fontSize: "1.2rem" }} className="">
-          {thisTask.description}
+        <p style={{ fontSize: "1.2rem" , overflowWrap: "break-word" }} className="">
+          Descrizione: {thisTask.description}
         </p>
 
         <div className="d-flex gap-5">
@@ -82,11 +84,23 @@ export default function TaskDetail() {
           </p>
         </div>
         <div className=" d-flex ">
-          <button type="submit" className="customBtn">
+          <button
+          type="button"
+            className="customBtn"
+            onClick={() => setShow(true)}
+          >
             Elimina Task
           </button>
         </div>
       </form>
+      <Modal
+        title="ELimina Task"
+        content="Vuoi davvero eliminare questa task?"
+        show={show}
+        onClose={() => setShow(false)}
+        onConfirm={handleRemove}
+        confirmText="Elimina"
+      />
     </>
   );
 }

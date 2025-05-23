@@ -241,3 +241,29 @@ td {
     transform: scale(1);
   }
 }
+
+
+/* BTN MODaLE */
+
+.modal-content{
+  background-color: var(--bg-main) !important;
+  color: var(--primary-dark);
+}
+
+.btn-close{
+  color: var(--text-main) !important;
+}
+
+.btn-close:hover{
+  color: var(--primary-dark) !important;
+}
+
+.modalBtn:hover{
+  background-color: var(--color-red) !important;
+  color: var(--text-main);
+}
+
+.modalBtnNull:hover{
+  background-color: var(--primary) !important;
+  color: var(--color-yellow);
+}
